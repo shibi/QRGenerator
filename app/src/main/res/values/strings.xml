@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">QRGenerator</string>
+    <string name="stop_saving">Stop saving</string>
+    <string name="saving_cancel_msg">Are you sure want to stop saving..</string>
+    <string name="label_yes">YES</string>
+    <string name="label_no">No</string>
+    <string name="tag_qrscanner">QRScanner</string>
+    <string name="tag_batch_qr">BATCH QR</string>
 </resources>

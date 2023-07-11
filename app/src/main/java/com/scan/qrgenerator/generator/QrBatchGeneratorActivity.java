@@ -93,7 +93,6 @@ public class QrBatchGeneratorActivity extends AppCompatActivity {
 
         //on click
         btnGenerate.setOnClickListener(this::onClickGenerate);
-
     }
 
     private void onClickGenerate(View view){
@@ -250,14 +249,13 @@ public class QrBatchGeneratorActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
 
-
         if(isThreadRunning){
 
             new AlertDialog.Builder(this)
-                    .setTitle("Stop saving")
-                    .setMessage("Are you sure want to stop saving..")
+                    .setTitle(R.string.stop_saving)
+                    .setMessage(R.string.saving_cancel_msg)
                     .setIcon(getResources().getDrawable(android.R.drawable.ic_dialog_alert))
-                    .setPositiveButton("YES",
+                    .setPositiveButton(R.string.label_yes,
                             new DialogInterface.OnClickListener() {
 
                                 @Override
@@ -279,7 +277,7 @@ public class QrBatchGeneratorActivity extends AppCompatActivity {
                                 }
                             })
                     .setNegativeButton(
-                            "No",
+                            R.string.label_no,
                             new DialogInterface.OnClickListener() {
 
                                 @Override
