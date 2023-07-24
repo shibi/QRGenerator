@@ -48,8 +48,8 @@ public class QrBatchGeneratorActivity extends AppCompatActivity {
     private int count;
     private String idNumberStr, prefix;
 
-    private int WIDTH = 512;
-    private int HEIGHT = 512;
+    private int WIDTH = 1024;
+    private int HEIGHT = 1024;
 
     private Thread qrSaverThread;
 
@@ -186,7 +186,7 @@ public class QrBatchGeneratorActivity extends AppCompatActivity {
     public static Bitmap createQRImage(final String data, final int width, final int height) throws WriterException {
         final BitMatrix bitMatrix = new QRCodeWriter().encode(data, BarcodeFormat.QR_CODE, width, height, Collections.singletonMap(EncodeHintType.CHARACTER_SET, "utf-8"));
         return Bitmap.createBitmap(IntStream.range(0, height)
-                        .flatMap(h -> IntStream.range(0, width).map(w -> bitMatrix.get(w, h) ? Color.BLACK : Color.TRANSPARENT))
+                        .flatMap(h -> IntStream.range(0, width).map(w -> bitMatrix.get(w, h) ? Color.WHITE : Color.BLACK))
                         .collect(() -> IntBuffer.allocate(width * height), IntBuffer::put, IntBuffer::put)
                         .array(),
                 width, height, Bitmap.Config.ARGB_8888);
