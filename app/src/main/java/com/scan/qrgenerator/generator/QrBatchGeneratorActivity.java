@@ -186,7 +186,7 @@ public class QrBatchGeneratorActivity extends AppCompatActivity {
     public static Bitmap createQRImage(final String data, final int width, final int height) throws WriterException {
         final BitMatrix bitMatrix = new QRCodeWriter().encode(data, BarcodeFormat.QR_CODE, width, height, Collections.singletonMap(EncodeHintType.CHARACTER_SET, "utf-8"));
         return Bitmap.createBitmap(IntStream.range(0, height)
-                        .flatMap(h -> IntStream.range(0, width).map(w -> bitMatrix.get(w, h) ? Color.WHITE : Color.BLACK))
+                        .flatMap(h -> IntStream.range(0, width).map(w -> bitMatrix.get(w, h) ? Color.BLACK : Color.TRANSPARENT))
                         .collect(() -> IntBuffer.allocate(width * height), IntBuffer::put, IntBuffer::put)
                         .array(),
                 width, height, Bitmap.Config.ARGB_8888);
