@@ -1,7 +1,6 @@
 package com.scan.qrgenerator.generator.qrtype;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.AppCompatButton;
 import androidx.cardview.widget.CardView;
 
 import android.content.Intent;
@@ -18,15 +17,13 @@ import com.github.dhaval2404.colorpicker.listener.ColorListener;
 import com.github.dhaval2404.colorpicker.model.ColorShape;
 
 import com.scan.qrgenerator.R;
-import com.scan.qrgenerator.generator.Constants;
+import com.scan.qrgenerator.Constants;
 import com.scan.qrgenerator.generator.QrBatchGeneratorActivity;
 
 import org.jetbrains.annotations.NotNull;
 
 public class SelectQrTypeActivity extends AppCompatActivity {
 
-    private AppCompatButton btn_color_picker;
-    private String color_custom_hex;
     private int backgroundColor;
 
 
@@ -34,6 +31,7 @@ public class SelectQrTypeActivity extends AppCompatActivity {
     private LinearLayout ll_pick_color;
     private ImageView iv_tick1, iv_tick2;
     private CardView cv_white, cv_black;
+    private CardView cv_colorPicker;
 
     private RadioGroup radioGroup;
     private int qrColor;
@@ -44,7 +42,7 @@ public class SelectQrTypeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_select_qr_type);
 
-        btn_color_picker = findViewById(R.id.btn_pick_color);
+        cv_colorPicker = findViewById(R.id.cv_pickerColorCard);
         ivSelectedColorView = findViewById(R.id.iv_selected_color);
         ll_pick_color = findViewById(R.id.ll_pick_color);
         radioGroup = findViewById(R.id.radioGrop);
@@ -54,7 +52,6 @@ public class SelectQrTypeActivity extends AppCompatActivity {
         cv_black = findViewById(R.id.cv_qr_type2);
 
         //init values
-        color_custom_hex = "";
         backgroundColor = Color.TRANSPARENT;
         radioGroup.check(R.id.rb_tr);
         qrColor = Color.WHITE;
@@ -63,16 +60,7 @@ public class SelectQrTypeActivity extends AppCompatActivity {
         qrType = 1;
 
 
-
-        ll_pick_color.setOnClickListener(v -> {
-            if(ll_pick_color.getVisibility() == View.VISIBLE){
-                ll_pick_color.setVisibility(View.GONE);
-            }else {
-                ll_pick_color.setVisibility(View.VISIBLE);
-            }
-        });
-
-        btn_color_picker.setOnClickListener(v -> {
+        cv_colorPicker.setOnClickListener(v -> {
             // Java Code
             new ColorPickerDialog.Builder(SelectQrTypeActivity.this)
                     .setTitle("Pick Theme")
@@ -80,8 +68,6 @@ public class SelectQrTypeActivity extends AppCompatActivity {
                     .setColorListener(new ColorListener() {
                         @Override
                         public void onColorSelected(int color, @NotNull String colorHex) {
-                            // Handle Color Selection
-                            color_custom_hex = colorHex;
                             backgroundColor = color;
                             ivSelectedColorView.setBackgroundColor(color);
 
@@ -114,17 +100,18 @@ public class SelectQrTypeActivity extends AppCompatActivity {
                 RadioButton button = group.findViewById(checkedId);
                 String tag = button.getTag().toString();
 
-                ll_pick_color.setVisibility(View.GONE);
-
                 switch (tag){
                     case "rb_tr":
                         backgroundColor = Color.TRANSPARENT;
+                        ll_pick_color.setVisibility(View.GONE);
                         break;
                     case "rb_black":
                         backgroundColor = Color.BLACK;
+                        ll_pick_color.setVisibility(View.GONE);
                         break;
                     case "rb_white":
                         backgroundColor = Color.WHITE;
+                        ll_pick_color.setVisibility(View.GONE);
                         break;
                     case "rb_custom":
                         ll_pick_color.setVisibility(View.VISIBLE);
@@ -136,6 +123,8 @@ public class SelectQrTypeActivity extends AppCompatActivity {
         findViewById(R.id.btn_next).setOnClickListener(v -> {
             gotoNextScreen();
         });
+
+
     }
 
     private void gotoNextScreen(){
@@ -146,7 +135,4 @@ public class SelectQrTypeActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    private void init(){
-
-    }
 }

@@ -1,4 +1,4 @@
-package com.scan.qrgenerator.generator;
+package com.scan.qrgenerator;
 
 /**
  * @author Shibin
