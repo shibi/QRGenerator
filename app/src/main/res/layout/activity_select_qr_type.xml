@@ -38,12 +38,14 @@
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1">
+                android:layout_weight="1"
+                android:gravity="center">
 
                 <androidx.cardview.widget.CardView
-                    android:layout_width="match_parent"
+                    android:id="@+id/cv_qr_type1"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
+                    android:layout_margin="4dp"
                     app:cardBackgroundColor="#8D918D"
                     app:cardCornerRadius="8dp">
 
@@ -59,6 +61,14 @@
 
                     </LinearLayout>
 
+                    <ImageView
+                        android:id="@+id/iv_tick_1"
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
+                        android:src="@drawable/tick"
+                        android:layout_gravity="bottom|end"
+                        android:layout_margin="1dp"/>
+
 
                 </androidx.cardview.widget.CardView>
 
@@ -67,12 +77,14 @@
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1">
+                android:layout_weight="1"
+                android:gravity="center">
 
                 <androidx.cardview.widget.CardView
-                    android:layout_width="match_parent"
+                    android:id="@+id/cv_qr_type2"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
+                    android:layout_margin="4dp"
                     app:cardBackgroundColor="#8D918D"
                     app:cardCornerRadius="8dp">
 
@@ -87,6 +99,15 @@
                             android:src="@drawable/qr_black" />
 
                     </LinearLayout>
+
+                    <ImageView
+                        android:id="@+id/iv_tick_2"
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
+                        android:src="@drawable/tick"
+                        android:layout_gravity="bottom|end"
+                        android:visibility="gone"
+                        android:layout_margin="1dp"/>
 
 
                 </androidx.cardview.widget.CardView>
@@ -109,6 +130,7 @@
                 android:textSize="18dp" />
 
             <RadioGroup
+                android:id="@+id/radioGrop"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
@@ -117,55 +139,81 @@
                     android:id="@+id/rb_tr"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:tag="rb_tr"
                     android:text="transparent" />
 
                 <RadioButton
                     android:id="@+id/rb_black"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:tag="rb_black"
                     android:text="Black" />
 
                 <RadioButton
                     android:id="@+id/rb_white"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:tag="rb_white"
                     android:text="White" />
 
                 <RadioButton
                     android:id="@+id/rb_custom"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:tag="rb_custom"
                     android:text="Custom" />
 
             </RadioGroup>
 
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/btn_pick_color"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="pick color"/>
-
             <LinearLayout
-                android:id="@+id/ll_colorview"
-                android:layout_width="wrap_content"
+                android:id="@+id/ll_pick_color"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
+                android:orientation="vertical"
+                android:visibility="gone"
                 android:gravity="center">
 
-                <androidx.appcompat.widget.AppCompatTextView
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btn_pick_color"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Select color"
-                    android:textColor="#000"
-                    android:textSize="12dp" />
+                    android:text="pick color"/>
 
-                <ImageView
-                    android:id="@+id/iv_selected_color"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:layout_margin="4dp"/>
+                <LinearLayout
+                    android:id="@+id/ll_colorview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Select color"
+                        android:textColor="#000"
+                        android:textSize="12dp" />
+
+                    <ImageView
+                        android:id="@+id/iv_selected_color"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_margin="4dp"
+                        android:background="@drawable/shape_frame"/>
+
+                </LinearLayout>
+
             </LinearLayout>
 
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_next"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingStart="60dp"
+                android:paddingEnd="60dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:text="NEXT"/>
 
         </LinearLayout>
 

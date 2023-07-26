@@ -4,6 +4,7 @@ import android.content.ContentResolver;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.net.Uri;
@@ -55,6 +56,8 @@ public class QrBatchGeneratorActivity extends AppCompatActivity {
 
     private boolean isThreadRunning;
 
+    private static int QR_COLOR, BACKGROUND_COLOR, QR_TYPE;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,6 +70,15 @@ public class QrBatchGeneratorActivity extends AppCompatActivity {
         tv_count = findViewById(R.id.tv_count);
         ll_progress = findViewById(R.id.ll_progress);
         tv_progressCount = findViewById(R.id.tv_progress_count);
+
+
+        Intent data = getIntent();
+        if(data!=null){
+            QR_COLOR = data.getIntExtra(Constants.TAG_QR_COLOR, -1);
+            BACKGROUND_COLOR = data.getIntExtra(Constants.TAG_QR_BG_COLOR, -1);
+            QR_TYPE = data.getIntExtra(Constants.TAG_QR_TYPE, -1);
+        }
+
 
         count = 0;
 
@@ -186,7 +198,7 @@ public class QrBatchGeneratorActivity extends AppCompatActivity {
     public static Bitmap createQRImage(final String data, final int width, final int height) throws WriterException {
         final BitMatrix bitMatrix = new QRCodeWriter().encode(data, BarcodeFormat.QR_CODE, width, height, Collections.singletonMap(EncodeHintType.CHARACTER_SET, "utf-8"));
         return Bitmap.createBitmap(IntStream.range(0, height)
-                        .flatMap(h -> IntStream.range(0, width).map(w -> bitMatrix.get(w, h) ? Color.BLACK : Color.TRANSPARENT))
+                        .flatMap(h -> IntStream.range(0, width).map(w -> bitMatrix.get(w, h) ? QR_COLOR : BACKGROUND_COLOR))
                         .collect(() -> IntBuffer.allocate(width * height), IntBuffer::put, IntBuffer::put)
                         .array(),
                 width, height, Bitmap.Config.ARGB_8888);
