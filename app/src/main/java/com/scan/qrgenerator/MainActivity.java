@@ -11,6 +11,7 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
 import com.scan.qrgenerator.generator.QrBatchGeneratorActivity;
+import com.scan.qrgenerator.generator.qrtype.SelectQrTypeActivity;
 import com.scan.qrgenerator.scanner.QrScannerActivity;
 
 
@@ -46,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
 
         }else if(clicked_tag.equals(tag_batch)){
             //qr generator screen
-            Intent intent = new Intent(MainActivity.this, QrBatchGeneratorActivity.class);
+            Intent intent = new Intent(MainActivity.this, SelectQrTypeActivity.class);
             startActivity(intent);
 
         }else {

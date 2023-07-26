@@ -43,4 +43,6 @@ dependencies {
 
     //QR generator
     implementation 'com.google.zxing:core:3.4.0'
+
+    implementation 'com.github.Dhaval2404:ColorPicker:2.3'
 }
